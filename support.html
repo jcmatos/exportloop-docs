@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exportloop support and user guide</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem;color:#14181a}h1,h2{line-height:1.25}code{background:#f4f5f7;padding:0 .25em}a{color:#007078}</style>
+</head><body>
+<h1>Exportloop support and user guide</h1>
+<p><b>Contact:</b> <a href="mailto:jcmatos@gmail.com">jcmatos@gmail.com</a>. We answer within two working days (Central European Time).</p>
+
+<h2>Getting started</h2>
+<ol>
+<li>A Zendesk administrator installs Exportloop from the Zendesk Marketplace.</li>
+<li>Open <b>Exportloop</b> from the left navigation bar of the Agent Workspace.</li>
+<li>Choose a <b>view</b>, or type a <b>search</b>; pick the columns, the comments option and the format; press
+<b>Export</b>. The file downloads when it is ready.</li>
+</ol>
+<p>Agents see the views and tickets their own Zendesk role allows. Exportloop uses the signed-in agent's permissions
+and nothing more.</p>
+
+<h2>Views and searches</h2>
+<ul>
+<li><b>View:</b> every ticket in the view, in the view's order.</li>
+<li><b>Search:</b> Zendesk search syntax, for example <code>status&lt;solved created&gt;2026-01-01 tags:billing</code>.
+Exportloop uses Zendesk's search export, so there is no 1,000-result limit. You do not need to add
+<code>type:ticket</code>.</li>
+</ul>
+
+<h2>Columns</h2>
+<p>Standard fields (ID, link, subject, description, status, priority, type, requester and email, submitter, assignee,
+group, organization, tags, channel, dates, satisfaction, external ID) and every active custom field. Dropdown fields
+show their labels, not their tags. Created, updated and due dates are real Excel dates in your computer's local
+time; custom date fields are exported as text (YYYY-MM-DD). Your choices are
+remembered in this browser for next time.</p>
+
+<h2>Comments</h2>
+<ul>
+<li><b>All comments in one column:</b> each ticket's conversation in one cell, oldest first, marked internal where
+it applies.</li>
+<li><b>One row per comment, on a second sheet:</b> ticket ID, subject, date, author, author email, public or
+internal, and the text. Easy to filter and pivot.</li>
+<li><b>Both</b>, and optionally <b>public replies only</b>.</li>
+</ul>
+<p>Comments need one request per ticket. Exportloop makes at most about 100 requests a minute, half of the
+smallest Zendesk plan's API limit, so other apps and integrations keep working. Expect about 10 minutes per 1,000
+tickets with comments. On a Team plan, avoid running several large exports at the same time. Keep the page open
+until the file downloads; <b>Cancel</b> stops at once.</p>
+
+<h2>Limits</h2>
+<ul>
+<li>Excel holds 32,767 characters per cell; longer text is cut there and ends with "… [truncated]" (in CSV too,
+so the file opens the same in Excel).</li>
+<li>Excel holds 1,048,576 rows per sheet; more comments continue on "Comments 2", "Comments 3" and so on.</li>
+<li>CSV files contain the ticket sheet only (with comments in one column if chosen). Cells that start with
+<code>=</code>, <code>+</code>, <code>-</code> or <code>@</code> are prefixed with an apostrophe so spreadsheet
+programs do not run them as formulas.</li>
+<li>Very large exports (tens of thousands of tickets) are built in the browser's memory. Split them by date with
+a search if the browser runs short of memory.</li>
+</ul>
+
+<h2>Troubleshooting</h2>
+<ul>
+<li><b>"Zendesk asked us to slow down":</b> your account hit its API limit, often because of another integration.
+Exportloop waits and carries on by itself.</li>
+<li><b>"Zendesk refused access":</b> your role cannot see that view or run that search.</li>
+<li><b>"Zendesk could not run that search":</b> check the search text in Zendesk's own search first.</li>
+<li><b>"Too much data for one file in the browser":</b> split the export, for example with searches by date
+(<code>created&gt;2026-01-01 created&lt;2026-04-01</code>).</li>
+<li><b>No download appeared:</b> use the <b>Download … again</b> link under the status line, or allow downloads
+for your Zendesk address in the browser.</li>
+</ul>
+<p>Still stuck? Write to <a href="mailto:jcmatos@gmail.com">jcmatos@gmail.com</a> with what you exported and the
+message you saw. Please do not send ticket data.</p>
+
+<p><a href="privacy.html">Privacy policy</a></p>
+</body></html>
